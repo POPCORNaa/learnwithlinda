@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Learn with Linda</title>
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+
+  <!-- SCREEN 1: REGISTRATION -->
+  <div id="screen-registration" class="screen">
+    <div class="screen-inner">
+      <h1>Learn with Linda</h1>
+      <div id="reg-step-container"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 2: CONSENT -->
+  <div id="screen-consent" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Before we start.</h2>
+      <p>This app can save your progress on this device.</p>
+      <p>No data is sent anywhere.</p>
+      <div class="consent-boxes">
+        <div class="consent-box">
+          <strong>I agree</strong>
+          <span>Your progress is saved. It will be here next time you open the app.</span>
+        </div>
+        <div class="consent-box consent-box-no">
+          <strong>No, thank you</strong>
+          <span>You can still use the app. Progress will not be saved after you close it.</span>
+        </div>
+      </div>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-consent-agree">I agree</button>
+        <button class="btn-outline" id="btn-consent-no">No, thank you</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 3: TUTORIAL -->
+  <div id="screen-tutorial" class="screen hidden">
+    <div class="screen-inner">
+      <div id="tutorial-container"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN 4: HOME -->
+  <div id="screen-home" class="screen hidden">
+    <div class="screen-inner">
+      <div class="home-header">
+        <h2 id="home-greeting"></h2>
+        <button class="btn-icon" id="btn-settings" aria-label="Settings">&#9881;</button>
+      </div>
+      <p class="home-sub">Choose a level to start.</p>
+      <div id="level-cards" class="level-cards"></div>
+      <div class="btn-stack home-actions">
+        <button class="btn-outline" id="btn-stats-home">My Progress</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 5: QUIZ -->
+  <div id="screen-quiz" class="screen hidden">
+    <div class="screen-inner quiz-inner">
+
+      <div class="quiz-header">
+        <span id="quiz-level-name" class="quiz-level-name"></span>
+        <span id="quiz-progress-text" class="quiz-progress-text"></span>
+      </div>
+
+      <div class="scenario-card">
+        <p id="quiz-scenario"></p>
+      </div>
+
+      <div id="quiz-photo-wrap" class="quiz-photo-wrap">
+        <img id="quiz-photo" src="" alt="Photo of a person" class="quiz-photo">
+        <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+      </div>
+
+      <!-- Inline card: hints / reveal / silence (no dark overlays) -->
+      <div id="quiz-inline-card" class="quiz-inline-card hidden"></div>
+
+      <div id="quiz-answers" class="quiz-answers"></div>
+
+      <div class="quiz-footer">
+        <button class="btn-hint" id="btn-hint-link">Need a hint?</button>
+        <button class="btn-quit"  id="btn-quit">Quit</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCREEN 6: RESULT -->
+  <div id="screen-result" class="screen hidden">
+    <div class="screen-inner">
+      <h2 id="result-title">Level complete.</h2>
+      <p id="result-score"    class="result-score"></p>
+      <p id="result-message"  class="result-message"></p>
+      <p id="result-strongest" class="result-detail"></p>
+      <p id="result-weakest"   class="result-detail"></p>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-next-level">Next level</button>
+        <button class="btn-outline"  id="btn-try-again" style="display:none">Try this level again</button>
+        <button class="btn-outline"  id="btn-result-home">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN 7: STATS -->
+  <div id="screen-stats" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Your progress.</h2>
+      <div id="stats-bars"></div>
+      <p id="stats-total"  class="stats-meta"></p>
+      <p id="stats-streak" class="stats-meta"></p>
+      <button class="btn-outline" id="btn-stats-back">Back</button>
+    </div>
+  </div>
+
+  <!-- SCREEN 8: SETTINGS -->
+  <div id="screen-settings" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Settings</h2>
+      <div class="btn-stack">
+        <button class="btn-outline" id="btn-replay-tutorial">Replay Tutorial</button>
+        <button class="btn-danger"  id="btn-delete-data">Delete All My Data</button>
+        <button class="btn-outline" id="btn-settings-back">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: QUIT CONFIRM -->
+  <div id="overlay-confirm" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <p id="confirm-text" class="overlay-question"></p>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-confirm-yes">Yes</button>
+        <button class="btn-outline"  id="btn-confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: GOODBYE -->
+  <div id="overlay-goodbye" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <p class="goodbye-text">You did good today. Have a nice day. &#128075;</p>
+      <button class="btn-primary" id="btn-goodbye-home">Home</button>
+    </div>
+  </div>
+
+  <!-- Hint toast — floating, auto-fades -->
+  <div id="hint-toast" class="hint-toast hidden"></div>
+
+  <script src="image-index.js?v=5"></script>
+  <script src="app.js?v=6"></script>
+</body>
+</html>

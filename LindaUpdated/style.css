@@ -1,0 +1,428 @@
+/* ============================================================
+   LEARN WITH LINDA — style.css v5
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #F7F5F0;
+  --bg-card:      #EDEAE3;
+  --bg-hint:      #FDF6DC;
+  --text:         #1C1A17;
+  --text-sub:     #5C5750;
+  --accent:       #2B6CB0;
+  --correct:      #2F7D32;
+  --wrong:        #B71C1C;
+  --border:       #C8C4BB;
+
+  /* Emotion colours — clearly distinct, calm, not neon */
+  --emo-happiness: #C8960C;
+  --emo-sadness:   #2878B0;
+  --emo-anger:     #B03030;
+  --emo-fear:      #6B4BAB;
+  --emo-surprise:  #0E8A7A;
+  --emo-disgust:   #5A8A28;
+  --emo-neutral:   #7A746C;
+}
+
+html { overflow-y: scroll; }
+
+body {
+  font-family: Arial, Helvetica, Verdana, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ============================================================
+   SCREENS
+   ============================================================ */
+.screen { display: flex; justify-content: center; padding: 24px 20px 48px; }
+.screen.hidden { display: none !important; }
+
+.screen-inner {
+  width: 100%;
+  max-width: 500px;
+  padding-top: 16px;
+  animation: fadein 0.25s ease both;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1 { font-size: 34px; font-weight: 800; margin-bottom: 28px; color: var(--text); }
+h2 { font-size: 26px; font-weight: 700; margin-bottom: 16px; }
+p  { margin-bottom: 14px; }
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary,
+.btn-outline,
+.btn-danger {
+  display: block;
+  width: 100%;
+  min-height: 62px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 10px 20px;
+  line-height: 1.3;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-outline  { background: #fff; color: var(--text); border-color: var(--border); }
+.btn-danger   { background: var(--wrong); color: #fff; border-color: var(--wrong); }
+
+.btn-primary:hover { opacity: 0.87; }
+.btn-outline:hover  { background: var(--bg-card); }
+.btn-danger:hover   { opacity: 0.87; }
+
+.btn-primary:focus,
+.btn-outline:focus,
+.btn-danger:focus { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.btn-stack { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+
+.btn-icon {
+  background: none; border: none; font-size: 26px; cursor: pointer;
+  padding: 6px; min-width: 44px; min-height: 44px; border-radius: 8px;
+  color: var(--text-sub); display: flex; align-items: center; justify-content: center;
+}
+.btn-icon:hover { background: var(--bg-card); }
+.btn-icon:focus { outline: 3px solid var(--accent); }
+
+/* ============================================================
+   REGISTRATION
+   ============================================================ */
+.reg-dots { display: flex; gap: 10px; margin-bottom: 28px; }
+.reg-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--border);
+}
+.reg-dot.active { background: var(--accent); }
+
+.reg-question {
+  font-size: 24px; font-weight: 700; margin-bottom: 24px; line-height: 1.4;
+}
+
+.reg-input {
+  width: 100%; min-height: 62px; border-radius: 12px;
+  border: 2px solid var(--border); font-size: 20px; font-family: inherit;
+  padding: 10px 16px; background: #fff; color: var(--text); margin-bottom: 12px;
+}
+.reg-input:focus { outline: 3px solid var(--accent); border-color: var(--accent); }
+
+/* ============================================================
+   CONSENT
+   ============================================================ */
+.consent-boxes { display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px; }
+.consent-box {
+  background: var(--bg-card); border-radius: 12px; padding: 14px 16px;
+  border-left: 5px solid transparent;
+}
+.consent-box strong { display: block; font-size: 18px; margin-bottom: 4px; }
+.consent-box span   { font-size: 15px; color: var(--text-sub); line-height: 1.5; }
+.consent-box-no     { border-left-color: var(--border); }
+
+/* ============================================================
+   HOME
+   ============================================================ */
+.home-header {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+}
+.home-header h2 { margin-bottom: 0; }
+.home-sub { color: var(--text-sub); font-size: 17px; margin-bottom: 18px; }
+.home-actions { margin-top: 8px; }
+
+.level-cards { display: flex; flex-direction: column; gap: 10px; }
+
+.level-card {
+  background: #fff; border-radius: 14px; padding: 16px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border: 2px solid var(--border); cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.level-card.unlocked  { border-color: var(--accent); }
+.level-card.completed { border-color: var(--correct); background: #F0F7F0; }
+.level-card.partial   { border-color: var(--emo-happiness); }
+.level-card.locked    { opacity: 0.4; cursor: not-allowed; pointer-events: none; }
+.level-card.unlocked:hover, .level-card.partial:hover { background: var(--bg-card); }
+
+.level-card-title { font-weight: 700; font-size: 17px; color: var(--text); }
+.level-card-sub   { font-size: 14px; color: var(--text-sub); margin-top: 2px; }
+.level-card-badge { font-size: 22px; margin-left: 12px; flex-shrink: 0; }
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+.quiz-inner { display: flex; flex-direction: column; padding-top: 8px; }
+
+.quiz-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.quiz-level-name {
+  font-size: 14px; font-weight: 700; color: var(--text-sub);
+  text-transform: uppercase; letter-spacing: 0.8px;
+}
+.quiz-progress-text {
+  font-size: 16px; font-weight: 700; color: var(--text-sub);
+  background: var(--bg-card); padding: 4px 12px; border-radius: 20px;
+}
+
+/* Scenario */
+.scenario-card {
+  background: var(--bg-card); border-radius: 12px;
+  padding: 14px 18px; margin-bottom: 14px;
+}
+.scenario-card p {
+  font-size: 20px; color: var(--text); margin: 0; line-height: 1.55; font-weight: 500;
+}
+
+/* Photo — full portrait visible, no cropping */
+.quiz-photo-wrap {
+  position: relative; display: flex; justify-content: center; margin-bottom: 14px;
+}
+.quiz-photo {
+  max-width: 380px; width: 100%; height: auto; border-radius: 14px;
+  object-fit: contain; display: block; background: var(--bg-card);
+  box-shadow: 0 3px 16px rgba(0,0,0,0.10);
+  max-height: 54vh;
+}
+@media (max-height: 780px) {
+  .quiz-photo { max-height: 44vh; max-width: 320px; }
+}
+
+/* Feedback badge over photo */
+.quiz-feedback {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  background: rgba(20,18,14,0.82); color: #fff;
+  padding: 8px 20px; border-radius: 10px; font-size: 17px; font-weight: 600;
+  white-space: nowrap; pointer-events: none;
+}
+.quiz-feedback.hidden { display: none; }
+
+.quiz-photo.glow  { animation: photoGlow 0.65s ease forwards; }
+.quiz-photo.shake { animation: photoShake 0.3s ease; }
+
+@keyframes photoGlow {
+  0%  { box-shadow: 0 3px 16px rgba(0,0,0,0.10); }
+  45% { box-shadow: 0 0 0 8px rgba(47,125,50,0.30); }
+  100%{ box-shadow: 0 3px 16px rgba(0,0,0,0.10); }
+}
+@keyframes photoShake {
+  0%,100%{ transform: translateX(0); }
+  30%    { transform: translateX(-4px); }
+  70%    { transform: translateX(4px); }
+}
+
+/* Photo placeholder */
+.photo-placeholder {
+  max-width: 400px; width: 100%; height: 240px;
+  border-radius: 14px; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: rgba(0,0,0,0.40);
+}
+
+/* ============================================================
+   INLINE CARD (hint / reveal / silence — NO dark overlay)
+   ============================================================ */
+.quiz-inline-card {
+  border-radius: 12px; padding: 16px 18px; margin-bottom: 14px;
+  animation: fadein 0.2s ease both;
+}
+.quiz-inline-card.hidden { display: none; }
+.card-hint    { background: var(--bg-hint); border: 2px solid #E8D870; }
+.card-reveal  { background: #fff; border: 2px solid var(--border); }
+.card-silence { background: var(--bg-card); border: 2px solid var(--border); }
+
+.ic-label {
+  font-size: 13px; font-weight: 700; color: var(--text-sub);
+  text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px;
+}
+.ic-body {
+  font-size: 19px; color: var(--text); margin-bottom: 14px; line-height: 1.5;
+}
+.ic-emotion {
+  font-size: 22px; font-weight: 800; margin-bottom: 6px;
+}
+.ic-desc {
+  font-size: 16px; color: var(--text-sub); margin-bottom: 14px; line-height: 1.5;
+}
+.ic-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.ic-btns .btn-outline { min-height: 50px; font-size: 17px; flex: 1; }
+.ic-btn-full {
+  width: 100%; min-height: 52px; border-radius: 10px; font-size: 18px; font-weight: 600;
+  font-family: inherit; cursor: pointer; background: var(--accent); color: #fff; border: none; padding: 10px;
+}
+.ic-btn-full:hover { opacity: 0.88; }
+.ic-btn-full:focus { outline: 3px solid var(--accent); }
+
+/* ============================================================
+   HINT TOAST — floating right side, auto-fades
+   ============================================================ */
+.hint-toast {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  background: var(--bg-hint);
+  border: 2px solid #E8D870;
+  border-radius: 12px;
+  padding: 14px 16px;
+  max-width: 220px;
+  z-index: 200;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  opacity: 1;
+  transition: opacity 1.4s ease;
+  pointer-events: none;
+}
+.hint-toast.fading { opacity: 0; }
+.hint-toast.hidden { display: none !important; }
+.hint-toast .ic-label { font-size: 12px; font-weight: 700; color: var(--text-sub); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+.hint-toast .ic-body  { font-size: 16px; color: var(--text); line-height: 1.5; margin: 0; }
+
+/* ============================================================
+   ANSWER BUTTONS — grid layout, 3 per row
+   ============================================================ */
+.quiz-answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-answer {
+  /* Each button takes ~1/3 of the row, wraps naturally */
+  flex: 1 1 calc(33.333% - 8px);
+  min-width: 90px;
+  min-height: 54px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid var(--border);
+  border-top: 5px solid var(--border); /* coloured top stripe per emotion */
+  color: var(--text);
+  text-align: center;
+  padding: 8px 6px;
+  transition: background 0.12s;
+  line-height: 1.3;
+}
+.btn-answer:hover    { background: var(--bg-card); }
+.btn-answer:focus    { outline: 3px solid var(--accent); outline-offset: 2px; }
+.btn-answer:disabled { cursor: default; }
+.btn-answer.correct  {
+  background: #EBF5EB; border-color: var(--correct); border-top-color: var(--correct);
+  color: var(--correct);
+}
+.btn-answer.wrong {
+  background: #FDEAEA; border-color: var(--wrong); border-top-color: var(--wrong);
+}
+
+/* Emotion top-border colours */
+.btn-answer[data-emotion="happiness"] { border-top-color: var(--emo-happiness); }
+.btn-answer[data-emotion="sadness"]   { border-top-color: var(--emo-sadness);   }
+.btn-answer[data-emotion="anger"]     { border-top-color: var(--emo-anger);     }
+.btn-answer[data-emotion="fear"]      { border-top-color: var(--emo-fear);      }
+.btn-answer[data-emotion="surprise"]  { border-top-color: var(--emo-surprise);  }
+.btn-answer[data-emotion="disgust"]   { border-top-color: var(--emo-disgust);   }
+.btn-answer[data-emotion="neutral"]   { border-top-color: var(--emo-neutral);   }
+
+@media (max-height: 780px) {
+  .btn-answer   { min-height: 48px; font-size: 16px; }
+  .quiz-answers { gap: 6px; }
+  .scenario-card { padding: 10px 14px; margin-bottom: 10px; }
+  .scenario-card p { font-size: 18px; }
+}
+
+/* ============================================================
+   QUIZ FOOTER
+   ============================================================ */
+.quiz-footer {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px; padding-bottom: 4px; gap: 12px;
+}
+
+/* Hint button — clearly visible */
+.btn-hint {
+  background: #fff; border: 2px solid var(--accent); border-radius: 10px;
+  padding: 8px 20px; font-size: 17px; font-weight: 600; font-family: inherit;
+  cursor: pointer; color: var(--accent); min-height: 46px;
+  transition: background 0.12s;
+}
+.btn-hint:hover { background: #EBF2FA; }
+.btn-hint:focus { outline: 3px solid var(--accent); }
+
+/* Quit button — clearly visible, turns red on hover */
+.btn-quit {
+  background: #fff; border: 2px solid var(--border); border-radius: 10px;
+  padding: 8px 22px; font-size: 17px; font-weight: 600; font-family: inherit;
+  cursor: pointer; color: var(--text-sub); min-height: 46px; white-space: nowrap;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+}
+.btn-quit:hover { background: #FDEAEA; border-color: var(--wrong); color: var(--wrong); }
+.btn-quit:focus { outline: 3px solid var(--accent); }
+
+/* ============================================================
+   RESULT SCREEN
+   ============================================================ */
+.result-score   { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
+.result-message { font-size: 17px; color: var(--text-sub); margin-bottom: 10px; }
+.result-detail  { font-size: 17px; color: var(--text-sub); margin-bottom: 4px; }
+
+/* ============================================================
+   STATS SCREEN
+   ============================================================ */
+.stat-bar-row { margin-bottom: 18px; }
+.stat-bar-label {
+  font-size: 17px; font-weight: 600; display: flex; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.stat-bar-track {
+  height: 18px; background: var(--bg-card); border-radius: 9px; overflow: hidden;
+}
+.stat-bar-fill {
+  height: 100%; border-radius: 9px; transition: width 0.5s ease; min-width: 4px;
+}
+.stats-meta { color: var(--text-sub); font-size: 17px; margin-bottom: 8px; }
+
+/* ============================================================
+   OVERLAYS — only quit-confirm + goodbye
+   ============================================================ */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.45);
+  display: flex; align-items: center; justify-content: center;
+  padding: 24px; z-index: 300; animation: fadein 0.2s ease both;
+}
+.overlay.hidden { display: none !important; }
+.overlay-card {
+  background: #fff; border-radius: 18px; padding: 32px 28px;
+  max-width: 400px; width: 100%;
+}
+.overlay-question { font-size: 20px; font-weight: 700; margin-bottom: 4px; line-height: 1.4; }
+.goodbye-text     { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+
+/* ============================================================
+   TUTORIAL
+   ============================================================ */
+.tutorial-text {
+  font-size: 26px; font-weight: 700; line-height: 1.45; margin-bottom: 32px; color: var(--text);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+*:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
