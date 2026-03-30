@@ -1,3 +1,6 @@
+miro
+https://miro.com/app/board/uXjVGvLIQOE=/?share_link_id=856204969952
+
 Linda: Social Logic Interface for ASD
 Linda is a specialized web application designed to support autistic students—specifically those navigating the high-stimulus environment of university life. Linda acts as a "Logical Translator," converting the unpredictable "noise" of social cues into predictable, rule-based data to help users recognize emotions and build social competence.
 
