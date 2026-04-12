@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Learn with Linda</title>
+  <link rel="stylesheet" href="style.css?v=8">
+</head>
+<body>
+
+  <!-- SCREEN: AUTH -->
+  <div id="screen-auth" class="screen hidden">
+    <div class="screen-inner">
+      <div class="brand-header">
+        <div class="brand-title">Learn with Linda<span class="brand-dot"></span></div>
+        <div class="brand-subtitle">Social Logic Interface</div>
+      </div>
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tab-login"  onclick="switchAuthTab('login')">Log In</button>
+          <button class="auth-tab"        id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</button>
+        </div>
+        <div id="form-login" class="auth-form">
+          <div class="auth-field">
+            <label class="auth-label" for="login-username">Username</label>
+            <input class="auth-input" id="login-username" type="text" autocomplete="username" placeholder="Your username">
+          </div>
+          <div class="auth-field">
+            <label class="auth-label" for="login-password">Password</label>
+            <input class="auth-input" id="login-password" type="password" autocomplete="current-password" placeholder="Your password">
+          </div>
+          <div class="auth-error" id="login-error"></div>
+          <button class="btn-primary" id="btn-login" style="margin-top:4px">Log In</button>
+        </div>
+        <div id="form-signup" class="auth-form hidden">
+          <div class="auth-field">
+            <label class="auth-label" for="signup-name">Your Name</label>
+            <input class="auth-input" id="signup-name" type="text" autocomplete="name" placeholder="What should we call you?">
+          </div>
+          <div class="auth-field">
+            <label class="auth-label" for="signup-username">Username</label>
+            <input class="auth-input" id="signup-username" type="text" autocomplete="username" placeholder="Choose a username">
+          </div>
+          <div class="auth-field">
+            <label class="auth-label" for="signup-password">Password</label>
+            <input class="auth-input" id="signup-password" type="password" autocomplete="new-password" placeholder="Choose a password">
+          </div>
+          <div class="auth-error" id="signup-error"></div>
+          <button class="btn-primary" id="btn-signup" style="margin-top:4px">Create Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: CONSENT -->
+  <div id="screen-consent" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Before we start.</h2>
+      <p>This app can save your progress on this device.</p>
+      <p>No data is sent anywhere.</p>
+      <div class="consent-boxes">
+        <div class="consent-box consent-box-yes"><strong>I agree</strong><span>Your progress is saved. It will be here next time you open the app.</span></div>
+        <div class="consent-box consent-box-no"><strong>No, thank you</strong><span>You can still use the app. Progress will not be saved after you close it.</span></div>
+      </div>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-consent-agree">I agree</button>
+        <button class="btn-outline" id="btn-consent-no">No, thank you</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: TUTORIAL -->
+  <div id="screen-tutorial" class="screen hidden">
+    <div class="screen-inner"><div id="tutorial-container"></div></div>
+  </div>
+
+  <!-- SCREEN: HOME -->
+  <div id="screen-home" class="screen hidden">
+    <div class="screen-inner">
+      <div class="home-header">
+        <h2 id="home-greeting"></h2>
+        <button class="btn-icon" id="btn-settings" aria-label="Settings">&#9881;</button>
+      </div>
+      <p class="home-sub">Choose a module to start.</p>
+      <div id="module-cards" class="level-cards"></div>
+      <div class="btn-stack home-actions">
+        <button class="btn-outline" id="btn-stats-home">My Progress</button>
+        <button class="btn-outline" id="btn-rule-home">Rule Box</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: QUIZ -->
+  <div id="screen-quiz" class="screen hidden">
+    <div class="screen-inner quiz-inner">
+      <div class="quiz-header">
+        <span id="quiz-level-name"    class="quiz-level-name"></span>
+        <span id="quiz-progress-text" class="quiz-progress-text"></span>
+      </div>
+      <div id="quiz-scenario-wrap" class="scenario-card">
+        <p id="quiz-scenario"></p>
+      </div>
+      <div id="quiz-video-area" class="quiz-video-area"></div>
+      <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+      <div id="quiz-inline-card" class="quiz-inline-card hidden"></div>
+      <div id="quiz-answers" class="quiz-answers"></div>
+      <div class="quiz-footer">
+        <button class="btn-hint" id="btn-hint-link">Need a hint?</button>
+        <button class="btn-outline" id="btn-rule-quiz">Rule Box</button>
+        <button class="btn-quit" id="btn-quit">Quit</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULT -->
+  <div id="screen-result" class="screen hidden">
+    <div class="screen-inner">
+      <h2 id="result-title">Module complete.</h2>
+      <p id="result-score"     class="result-score"></p>
+      <p id="result-message"   class="result-message"></p>
+      <p id="result-strongest" class="result-detail"></p>
+      <p id="result-weakest"   class="result-detail"></p>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-next-level">Next module</button>
+        <button class="btn-outline"  id="btn-try-again" style="display:none">Try again</button>
+        <button class="btn-outline"  id="btn-result-home">Home</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: STATS -->
+  <div id="screen-stats" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Your progress.</h2>
+      <div id="stats-bars"></div>
+      <p id="stats-total"  class="stats-meta"></p>
+      <p id="stats-streak" class="stats-meta"></p>
+      <div class="btn-stack">
+        <button class="btn-outline" id="btn-stats-back">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RULE -->
+  <div id="screen-rule" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Rule Box</h2>
+      <div class="rule-box-content">
+        <p><a href="Rule box info.docx" target="_blank" rel="noopener">Download Rule box info.docx</a></p>
+        <h3>Researcher 1</h3>
+        <p>Primary Author: Tiffany</p>
+        <p>Field: Institutional Affiliation: University of Miami/Miller School of Medicine and Fielding Graduate University, USA</p>
+        <p>Article Title: Universal Emotions Research 2024-2025: A Narrative Review</p>
+        <p>Journal: Journal of Clinical Psychology and Neurology (J Clin Psychol Neurol)</p>
+        <p>Publication Date: May 26, 2025 (Published); Vol. 3, Issue 2</p>
+        <p>DOI: 10.61440/JCPN.2025.v3.48</p>
+        <h3>Researcher 2</h3>
+        <p>Primary Authors: Harald G. Wallbott and Klaus R. Scherer</p>
+        <p>Institutional Affiliation: University of Geneva (Archive ouverte UNIGE); University of Giessen</p>
+        <p>Article Title: How universal and specific is emotional experience? Evidence from 27 countries on five continents</p>
+        <p>Journal: Social Science Information (SAGE Publications)</p>
+        <p>Publication Date: 1986; Vol. 25, No. 4, pp. 763–795</p>
+        <p>DOI: 10.1177/053901886025004001</p>
+        <h3>Researcher 3</h3>
+        <p>Primary Authors: Christian G. Kohler, Travis Turner, Neal M. Stolar, Warren B. Bilker, Colleen M. Brensinger, Raquel E. Gur, and Ruben C. Gur</p>
+        <p>Institutional Affiliations: Neuropsychiatry, Department of Psychiatry, University of Pennsylvania, USA; Department of Psychology, University of California, San Diego, USA; Department of Biostatistics and Epidemiology, University of Pennsylvania, USA</p>
+        <p>Article Title: Differences in facial expressions of four universal emotions</p>
+        <p>Journal: Psychiatry Research (Elsevier)</p>
+        <p>Publication Date: 2004; Vol. 128, pp. 235–244</p>
+        <h3>RULE BOX INFO</h3>
+        <h4>Happiness / Joy</h4>
+        <p>Facial Actions: Smiling, laughing, cheek raising (AU 6), lip corner pulling upward (AU 12), tightening of the lower eyelid (AU 7), jaw dropping (AU 26), raising of the upper lip (AU 10), and raising of the inner brow (AU 1).</p>
+        <p>Associated Non-Verbal Cues: General physical gestures and movements toward other people.</p>
+        <p>Recognition: Identified as the easiest universal emotion to recognize.</p>
+        <h4>Sadness</h4>
+        <p>Facial Actions: Crying, furrowing of the eyebrows/brow lowering (AU 4), raising of the inner brow (AU 1), raising of the chin (AU 17), stretching of the lips (AU 20), raising of the upper lip (AU 10), tightening of the eyelids (AU 7), and lip corners depressed/turned down (AU 15).</p>
+        <p>Associated Non-Verbal Cues: Silence, changed voice quality, and general muted facial expressions.</p>
+        <p>Specific Exclusions: Jaw dropping (AU 26) is specifically noted as absent in this expression.</p>
+        <h4>Fear</h4>
+        <p>Facial Actions: Eyes wide open/upper lid raising (AU 5), furrowed and raised eyebrows, raising of the inner brow (AU 1), raising of the outer brow (AU 2), lowering of the brow (AU 4), stretching of the mouth/lip stretching (AU 20), jaw dropping (AU 26), and nostril dilation (AU 38).</p>
+        <p>Associated Non-Verbal Cues: Silence and speech disturbances such as stuttering.</p>
+        <p>Specific Exclusions: Lid tightening (AU 7) and upper lip raising (AU 10) are specifically noted as absent.</p>
+        <h4>Anger</h4>
+        <p>Facial Actions: Screaming, lowered or furrowed eyebrows (AU 4), eyes wide open/upper lid raising (AU 5), tightening of the lower lid (AU 7), nose wrinkling (AU 9), raising of the upper lip (AU 10), depression of the lower lip (AU 16), and parting of the lips or jaw dropping (AU 25/26) to expose teeth.</p>
+        <p>Associated Non-Verbal Cues: Increased speech activity, abrupt bodily movements, and specific hand/arm gestures.</p>
+        <p>Specific Exclusions: Inner brow raising (AU 1) is specifically noted as absent.</p>
+        <h4>Disgust</h4>
+        <p>Facial Actions: Nose wrinkling and raising of the upper lip.</p>
+        <p>Associated Non-Verbal Cues: High frequency of facial reactions involving the proximal senses, such as smell, taste, and touch.</p>
+        <p>Development: Identified as the last universal emotion recognized across human development.</p>
+        <h4>Surprise</h4>
+        <p>Facial Actions: Specific muscle markers are described as fleeting and difficult to capture in 2024-2025 research, though historically associated with raised eyebrows and wide eyes.</p>
+        <p>Associated Non-Verbal Cues: Rapid onset and brief duration; often grouped with awe or curiosity.</p>
+      </div>
+      <div class="btn-stack">
+        <button class="btn-outline" id="btn-rule-back">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: SETTINGS -->
+  <div id="screen-settings" class="screen hidden">
+    <div class="screen-inner">
+      <h2>Settings</h2>
+      <div class="settings-user-info">
+        <div class="settings-user-name" id="settings-user-name"></div>
+        <div class="settings-user-sub"  id="settings-user-sub"></div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-label">Account</div>
+        <div class="btn-stack" style="margin-top:0">
+          <button class="btn-outline" id="btn-account-quit">Quit &amp; Log Out</button>
+          <button class="btn-danger"  id="btn-delete-data">Delete All My Data</button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <div class="settings-label">App</div>
+        <div class="btn-stack" style="margin-top:0">
+          <button class="btn-outline" id="btn-replay-tutorial">Replay Tutorial</button>
+          <button class="btn-outline" id="btn-settings-back">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: CONFIRM -->
+  <div id="overlay-confirm" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <p id="confirm-text" class="overlay-question"></p>
+      <div class="btn-stack">
+        <button class="btn-primary" id="btn-confirm-yes">Yes</button>
+        <button class="btn-outline"  id="btn-confirm-no">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- OVERLAY: GOODBYE -->
+  <div id="overlay-goodbye" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <p class="goodbye-text">You did good today. Have a nice day. &#128075;</p>
+      <button class="btn-primary" id="btn-goodbye-home">Home</button>
+    </div>
+  </div>
+
+  <!-- OVERLAY: ACTOR PREFERENCE -->
+  <div id="overlay-actor" class="overlay hidden" role="dialog" aria-modal="true">
+    <div class="overlay-card">
+      <h2 style="margin-bottom:20px; text-align:center;">Choose actor preference</h2>
+      <div class="btn-stack">
+        <button class="btn-outline" id="btn-actor-female">Female</button>
+        <button class="btn-outline" id="btn-actor-male">Male</button>
+        <button class="btn-outline" id="btn-actor-both" style="display:none;">Both</button>
+        <button class="btn-primary" id="btn-actor-back">Back</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="video-index.js?v=1"></script>
+  <script src="scenarios.js?v=1"></script>
+  <script src="app.js?v=7"></script>
+</body>
+</html>
