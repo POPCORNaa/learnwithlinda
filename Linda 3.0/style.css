@@ -217,32 +217,33 @@ p  { margin-bottom:12px; }
 
 /* Replay button — single video (right of video) */
 .single-video-wrap {
-  display:flex;
-  align-items:center;
-  gap:10px;
+  position:relative;
   width:100%;
+  display:flex;
   justify-content:center;
 }
 .single-video-wrap .quiz-video.single {
-  flex:1;
+  width:100%;
   max-width:520px;
 }
 .btn-replay {
-  flex-shrink:0;
-  background:var(--bg-card);
-  border:2px solid var(--border-warm);
+  position:absolute;
+  bottom:12px;
+  right:12px;
+  background:rgba(0,0,0,0.55);
+  border:none;
   border-radius:10px;
   padding:8px 14px;
   font-size:15px;
   font-weight:700;
   font-family:inherit;
   cursor:pointer;
-  color:var(--text);
+  color:#fff;
   min-height:44px;
   white-space:nowrap;
-  transition:background .12s,border-color .12s;
+  transition:background .12s;
 }
-.btn-replay:hover  { background:var(--accent-light); border-color:var(--accent); }
+.btn-replay:hover  { background:rgba(0,0,0,0.75); }
 .btn-replay:focus  { outline:3px solid var(--accent); }
 
 /* Replay button — dual video (below each slot) */
