@@ -41,7 +41,7 @@
         var filename = '01-01-' + emoCode + '-01-' + stmt + '-01-' + actor.id + '.mp4';
         index[actor.gender][appEmotion].push({
           id:         actor.id + '-' + emoCode + '-s' + stmt,
-          path:       'video_selected/Actor_' + actor.id + '/' + filename,
+          path:       'https://pub-75e23e337fdb4329b92a2b639e077b51.r2.dev/video_selected/Actor_' + actor.id + '/' + filename,
           appEmotion: appEmotion,
           actor:      actor.id,
           gender:     actor.gender
